@@ -14,11 +14,11 @@ const config = {
   },
 };
 
-const regenerate = () => {
+const regenerate = ({ maxWidth, count }) => {
   const data = generate(
-    new Array(50).fill(null).map((_, i) => i.toString()),
+    new Array(count).fill(null).map((_, i) => i.toString()),
     {
-      maxWidth: 5,
+      maxWidth,
       edgeProbability: 0.3,
     }
   ).serialize();
@@ -37,7 +37,9 @@ const regenerate = () => {
 
 
 export default () => {
-  const [nodes, setNodes] = useState(regenerate());
+  const [count, setCount] = useState(50);
+  const [maxWidth, setMaxWidth] = useState(5);
+  const [nodes, setNodes] = useState(regenerate({ count, maxWidth }));
 
   const exportGraphson = () => {
     console.log(
@@ -51,15 +53,29 @@ export default () => {
 
   return (
     <>
+      <div
+        style={{ position: 'fixed', top: '10px', right: '10px', fontSize: '14px', padding: '0.75rem', fontWeight: 'bold' }}>
+        <label>Node Count:</label>
+        <input type="number" min="1" value={count} 
+          inputMode="numeric" onChange={e => setCount(Number(e.target.value))}
+          style={{ fontSize: '14px', padding: '0.5rem', width: '50px' }} />
+      </div>
+      <div
+        style={{ position: 'fixed', top: '50px', right: '10px', fontSize: '14px', padding: '0.75rem', fontWeight: 'bold' }}>
+        <label>Max Width:</label>
+        <input type="number" min="1" value={maxWidth} 
+          inputMode="numeric" onChange={e => setMaxWidth(Number(e.target.value))}
+          style={{ fontSize: '14px', padding: '0.5rem', width: '50px' }} />
+      </div>
       <button 
         type="button" 
-        style={{ position: 'fixed', top: '10px', right: '10px', fontSize: '20px', padding: '0.75rem' }}
-        onClick={() => setNodes(regenerate())}>
-        Generate new Graph
+        style={{ position: 'fixed', top: '110px', right: '10px', fontSize: '14px', padding: '0.75rem' }}
+        onClick={() => setNodes(regenerate({ count, maxWidth }))}>
+        Regenerate
       </button>
       <button 
         type="button" 
-        style={{ position: 'fixed', top: '70px', right: '10px', fontSize: '20px', padding: '0.75rem' }}
+        style={{ position: 'fixed', top: '170px', right: '10px', fontSize: '14px', padding: '0.75rem' }}
         onClick={exportGraphson}>
         Export to Console
       </button>
