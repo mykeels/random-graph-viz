@@ -1,27 +1,17 @@
-param (
-    [Parameter(Mandatory=$true)][string]$commitMessage
-)
+git branch -f gh-pages       
 
-"Deleting old buildation"
-Remove-Item .\build -Force -Recurse -ErrorAction Ignore
+git checkout gh-pages
+
+git reset --hard origin/master
+
 yarn build
-git worktree prune
-Remove-Item .git\worktrees\build\ -Force -Recurse -ErrorAction Ignore
 
-"Checking out gh-pages branch into build"
-git worktree add -B gh-pages build origin/gh-pages
+cp -r build/* .
 
-"Committing master branch"
-git add --all
-git commit -m $commitMessage --allow-empty
+git add -A .
 
-"Committing gh-pages branch"
-Push-Location -path build
-git add --all
-git commit -m $commitMessage --allow-empty
+git commit -a -m 'push to gh-pages'
 
-"Pushing gh-pages branch to Github"
-git push origin gh-pages
+git push origin gh-pages --force
 
-# pop back to Hugo folder
-Pop-Location
+git checkout master
