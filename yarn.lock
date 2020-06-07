@@ -8692,10 +8692,10 @@ raf@^3.4.1:
   dependencies:
     performance-now "^2.1.0"
 
-random-graph-generator@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/random-graph-generator/-/random-graph-generator-1.0.0.tgz#c485f6d38d6dd6ed8a10bf51db2303197a632eab"
-  integrity sha512-UeeIefHeAhsJubQylesXDlAskbn/01NW2FO4EOXyYCB2QgHIEVZnkGQHfBkDMBWFWqA7mQOZnjj2z3OyWb7hjQ==
+random-graph-generator@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/random-graph-generator/-/random-graph-generator-1.1.0.tgz#b6473f1e8b6ccfd4a67c9f6474fa9a5d21ca1daa"
+  integrity sha512-LfPeHv4MtEXismJuDURr3G5EOi+fG+FwMHsuPrjLnv2T0FhhY0bFoYvQOrWdD9wFwo0TWGBOiRO2PWW0kVNflA==
   dependencies:
     graph-data-structure "^1.12.0"
 

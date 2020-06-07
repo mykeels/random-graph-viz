@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "d3": "^5.16.0",
     "d3-drag": "^1.2.5",
-    "random-graph-generator": "^1.0.0",
+    "random-graph-generator": "^1.1.0",
     "react": "^16.13.1",
     "react-d3-graph": "^2.4.1",
     "react-dom": "^16.13.1",
