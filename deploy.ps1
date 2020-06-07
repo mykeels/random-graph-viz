@@ -2,12 +2,6 @@ param (
     [Parameter(Mandatory=$true)][string]$commitMessage
 )
 
-# abort if no changes to commit
-If (-Not (git status --porcelain)) {
-	"No changes to commit. Aborted!"
-	exit
-}
-
 "Deleting old buildation"
 Remove-Item .\build -Force -Recurse -ErrorAction Ignore
 mkdir build | out-null
@@ -25,7 +19,7 @@ hugo --quiet
 
 "Committing master branch"
 git add --all
-git commit -m $commitMessage
+git commit -m $commitMessage --allow-empty
 
 "Committing gh-pages branch"
 Push-Location -path build
